@@ -8,19 +8,12 @@
 % pokrenut (dakle coordinator.PointCloudSegments postoji i sadrzi
 % segmentirane klastere iz scene).
 %
-% Rezultat: figura sa dva panela (prije / poslije poravnanja), spremljena
-% kao icp_poravnanje.png, spremna za umetanje u rad.
-
-%% Ucitaj CAD modele (isto kao u izvornom kodu)
+%% Ucitavanje CAD modela (isto kao u izvornom kodu)
 bottle = stlread('exampleHelperBottlePoints.stl');
 can = stlread('exampleHelperCanPoints.stl');
 pcBottle = pointCloud(bottle.Points);
 pcCan = pointCloud(can.Points);
 
-%% Odaberi koji segment i koji referentni model zelis prikazati
-% Promijeni segmentIndex prema tome koji segment u tvojoj sceni
-% odgovara boci (provjeri npr. duljinu coordinator.PointCloudSegments
-% i probaj nekoliko indeksa dok ne pogodis pravi segment za bocu).
 segmentIndex = 5;
 referenceModel = pcBottle;   % promijeni u pcCan za limenku
 referenceName = 'model boce';
