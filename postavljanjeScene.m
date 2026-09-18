@@ -4,8 +4,6 @@ function postavljanjeScene(scenarij)
 % /gazebo/set_model_state.
 %
 % Koristi se za eksperimente robusnosti opisane u poglavlju 5.4
-% zavrsnog rada "Autonomno pretrazivanje okoline primjenom 3D vizijskog
-% sustava i robotske ruke".
 %
 % ULAZ:
 %   scenarij - string, jedan od:
@@ -17,7 +15,7 @@ function postavljanjeScene(scenarij)
 %
 % PRETPOSTAVKA: aktivna ROS veza s Gazebo simulacijom (rosinit vec
 % pozvan), te da su modeli u sceni imenovani 'Red Bottle' i 'Green Can'
-% (provjeri stvarna imena u svojoj sceni naredbom:
+% (provjera stvarnih imena u sceni naredbom:
 %   resp = call(rossvcclient('/gazebo/get_world_properties'));
 %   disp(resp.ModelNames)
 %
