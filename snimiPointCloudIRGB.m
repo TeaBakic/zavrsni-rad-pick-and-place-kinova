@@ -4,15 +4,8 @@
 % scene, koristeci vec postojece pretplate unutar coordinator objekta
 % (obj.ROSinfo.pointCloudSub i obj.ROSinfo.rgbImgSub).
 %
-% PRETPOSTAVKA: 'coordinator' vec postoji u workspaceu (nakon rosinit
-% i inicijalizacije coordinatora - ne treba ni Build Environment ni
-% ostale korake, dovoljno je da je ROS veza uspostavljena i da robot
-% stoji u nekoj razumnoj pozi s koje kamera gleda prema stolu).
+% PRETPOSTAVKA: 'coordinator' vec postoji u workspaceu (nakon rosinit i inicijalizacije coordinatora)
 %
-% Rezultat: dvije odvojene slike (point_cloud_sirovi.png,
-% rgb_scena.png) i jedna kombinirana slika sa obje jedna pored druge
-% (point_cloud_i_rgb.png), spremne za umetanje u rad.
-
 %% Snimi RGB sliku
 rgbMsg = receive(coordinator.ROSinfo.rgbImgSub, 10);   % timeout 10 s
 rgbImage = readImage(rgbMsg);
