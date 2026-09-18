@@ -40,7 +40,7 @@ function provjeriRobusnost()
     pcBottle = pointCloud(bottle.Points);
     pcCan = pointCloud(can.Points);
 
-    % --- prikazi spojeni point cloud kao pozadinu ---
+    % --- prikazi spojeni oblak tocaka kao pozadinu ---
     figure('Name', 'Provjera robusnosti');
     pcshow(coordinator.MergedPointCloud);
     hold on;
