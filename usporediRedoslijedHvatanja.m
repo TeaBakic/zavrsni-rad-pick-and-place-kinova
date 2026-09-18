@@ -1,23 +1,17 @@
-%% usporediRedoslijedHvatanja.m  (PRECIZNA, LANCANA VERZIJA)
+%% usporediRedoslijedHvatanja.m  
 %
 % Uspoređuje ukupnu duljinu puta robota za dva moguća redoslijeda
 % hvatanja predmeta, prateci STVARNI lanac pokreta:
 %   Redoslijed A (fiksni): Home -> Grasp1 -> Place1 -> Home -> Grasp2 -> Place2 -> Home
 %   Redoslijed B:           Home -> Grasp2 -> Place2 -> Home -> Grasp1 -> Place1 -> Home
 %
-% Za razliku od prve verzije, svaka etapa POCINJE od stvarne konfiguracije
-% u kojoj je prethodna etapa ZAVRSILA, ne uvijek od Home-a - pa zbroj
-% duljina puta stvarno ovisi o redoslijedu.
-%
-% PRETPOSTAVKA: 'coordinator' već postoji, Build Environment i
-% Detect Parts su već pokrenuti.
+% PRETPOSTAVKA: 'coordinator' već postoji, Build Environment i Detect Parts su već pokrenuti.
 
 robot = coordinator.Robot;
 world = coordinator.World;
 homeConfig = coordinator.CurrentRobotJConfig;
 ik = inverseKinematics('RigidBodyTree', robot);
 
-%% Postavi fiksne PlacingPose (isto kao u glavnoj skripti primjera)
 coordinator.PlacingPose{1} = trvec2tform([0.2 0.55 0.26]) * axang2tform([0 0 1 pi/2]) * axang2tform([0 1 0 pi]);
 coordinator.PlacingPose{2} = trvec2tform([0.2 -0.55 0.26]) * axang2tform([0 0 1 pi/2]) * axang2tform([0 1 0 pi]);
 
@@ -50,7 +44,7 @@ function [len, endConfig] = duljinaIKraj(robot, world, ik, startConfig, targetPo
     endConfig = path(end, :);
 end
 
-%% Pomocna funkcija: izvrsi cijeli ciklus za JEDAN predmet (grasp->place->home)
+%% Pomocna funkcija: izvrsi cijeli ciklus za jedan predmet (grasp->place->home)
 %  Vraca ukupnu duljinu tog ciklusa, pocevsi od zadane pocetne konfiguracije.
 function [ukupno, konfigNaKraju] = ciklusZaPredmet(robot, world, ik, startConfig, homePose, graspPose, placePose, endEffector)
     [len1, cfgAfterGrasp] = duljinaIKraj(robot, world, ik, startConfig, graspPose, endEffector);
@@ -60,7 +54,6 @@ function [ukupno, konfigNaKraju] = ciklusZaPredmet(robot, world, ik, startConfig
     konfigNaKraju = cfgAfterHome;
 end
 
-%% Pripremi pocetnu (Home) pozu kao tform, i naziv end-effectora
 endEffector = coordinator.RobotEndEffector;
 homePose = getTransform(robot, homeConfig, endEffector);
 
