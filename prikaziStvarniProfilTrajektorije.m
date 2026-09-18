@@ -2,17 +2,12 @@
 %
 % Generira i crta STVARNI profil polozaja, brzine i ubrzanja jednog
 % zgloba, izracunat na isti nacin kao u izvornoj implementaciji
-% (exampleCommandMoveToTaskConfigROSGazeboScene.m), za stvarni RRT put
-% isplaniran u tvojoj sceni.
+% (exampleCommandMoveToTaskConfigROSGazeboScene.m), za stvarnu RRT putanju.
 %
 % PRETPOSTAVKA: 'coordinator' objekt vec postoji u workspaceu (nakon
 % Build Environment, Detect Parts, Picking Logic i Compute Grasp Pose
 % koraka - isti redoslijed kao za mjeriRRTParametre.m).
 %
-% Rezultat: graf s tri panela (polozaj/brzina/ubrzanje) za jedan
-% odabrani zglob, spremljen kao .png, spreman za umetanje u rad.
-
-%% Priprema - isplaniraj put (polazne, default postavke)
 robot = coordinator.Robot;
 world = coordinator.World;
 startConfig = coordinator.CurrentRobotJConfig;
