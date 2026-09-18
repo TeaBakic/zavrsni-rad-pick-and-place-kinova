@@ -30,12 +30,27 @@ Za pokretanje je potrebno:
 | `prikaziICPPoravnanje.m` | Prikazuje ICP poravnanje prije/poslije | 4.2 |
 | `usporediRedoslijedHvatanja.m` | Uspoređuje redoslijed hvatanja (najbliži prvi) | 5.3 |
 | `usporediRMSEKriterij.m` | Uspoređuje redoslijed prema RMSE kriteriju | 5.3 |
+| postavljanjeScene.m | Programski postavlja predmete za 4 testne scene | 5.4 |
+| provjeriRobusnost.m | Provjerava detekciju, RMSE i vizualizira centroide | 5.4 |
 
 ## Kako pokrenuti
 
 1. Spremi sve datoteke u isti folder kao izvorni MathWorks primjer
 2. Pokreni pripremu (rosinit, coordinator, Build Environment, Detect Parts — vidi poglavlje 3-4 rada)
 3. Pokreni željenu skriptu iz tablice iznad
+
+## Reproduciranje eksperimenta iz poglavlja 5.4
+
+```matlab
+% ... rosinit, coordinator ...
+
+postavljanjeScene('lezece')   % ili: 'boca_na_limenci', 'boca_ispred_limenke', 'limenka_ispred_boce'
+
+exampleCommandBuildWorldROSGazeboScene(coordinator)
+exampleCommandDetectPartsROSGazeboScene(coordinator)
+
+provjeriRobusnost()
+```
 
 ## Autor
 
