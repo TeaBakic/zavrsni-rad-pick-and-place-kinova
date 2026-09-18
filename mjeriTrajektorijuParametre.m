@@ -13,13 +13,7 @@
 % JEDNOM (uz polazne, fiksne RRT postavke), kako bi sve razlike u
 % rezultatima dosljedno dolazile iskljucivo od promjene parametra h,
 % a ne od razlicitih putova u razlicitim pokusajima.
-%
-% Rezultat: tablica (Command Window + .csv) i graf sa tri panela
-% (polozaj / brzina / ubrzanje) koji uspoređuje tri razlicite
-% vrijednosti h na istom putu, spremljen kao .png spreman za umetanje
-% u rad.
 
-%% Priprema - isplaniraj JEDAN put koji ce se koristiti za sve testove
 robot = coordinator.Robot;
 world = coordinator.World;
 startConfig = coordinator.CurrentRobotJConfig;
@@ -46,7 +40,7 @@ robotPos = positions';   % numJoints x N
 numJoints = coordinator.NumJoints;
 jointToPlot = 1;   % promijeni ako zelis prikazati neki drugi zglob (1-7)
 
-%% Testiraj nekoliko vrijednosti h
+%% Testiranje nekoliko vrijednosti h
 hValues = [0.02, 0.03, 0.05];
 resultsTable = table();
 
@@ -67,8 +61,7 @@ for k = 1:numel(hValues)
     robotAccTemp = diff(robotVel) ./ diff(trajTimes)';
     robotAcc = [zeros(2, numJoints); robotAccTemp];
 
-    % Obrezivanje na zajednicku duljinu (izbjegava gresku zbog
-    % dodatnog retka koji nastaje u izvornom nacinu racunanja robotAcc)
+    % Obrezivanje na zajednicku duljinu
     N = numel(trajTimes);
     robotAcc = robotAcc(1:N, :);
 
